@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="cache-control" content="no-cache">
+  <meta http-equiv="expires" content="0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'submit.css' %}">
+  <title>Movie Pair</title>
+</head>
+
+<body>
+  <div id="background"></div>
+  <div class="container pt-5">
+    <div id="confirm-panel" class="row p-4">
+      <div id="info-column" class="col-7">
+        <h3>您選擇了：{{movie.name }}</h3>
+        <form action="/movie/submit/{{movie.id}}" method="POST">
+          {% csrf_token %}
+          <div class="mt-3">
+            <p>請輸入您的 email</p>
+            <input type="email" name="email" id="email">
+          </div>
+          <div class="mt-3">
+            <p>請輸入您的姓名</p>
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="mt-3">
+            <p>請介紹一下你自己 (必須包含您的名字)</p>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+          </div>
+          <div class="mt-3">
+            <p>請選擇您想看電影的地區</p>
+            <select name="location" id="location">
+              <option value="基隆">基隆</option>
+              <option value="台北">台北</option>
+              <option value="宜蘭">宜蘭</option>
+              <option value="桃園">桃園</option>
+              <option value="新竹">新竹</option>
+              <option value="苗栗">苗栗</option>
+              <option value="台中">台中</option>
+              <option value="彰化">彰化</option>
+              <option value="南投">南投</option>
+              <option value="雲林">雲林</option>
+              <option value="嘉義">嘉義</option>
+              <option value="台南">台南</option>
+              <option value="高雄">高雄</option>
+              <option value="屏東">屏東</option>
+              <option value="花蓮">花蓮</option>
+              <option value="台東">台東</option>
+            </select>
+          </div>
+          <div class="mt-3">
+            <p>請選擇您想看電影的時段</p>
+            <select name="time" id="time">
+              <option value="9-12">9:00-12:00</option>
+              <option value="12-15">12:00-15:00</option>
+              <option value="15-18">15:00-18:00</option>
+              <option value="18-21">18:00-21:00</option>
+              <option value="21-24">21:00-24:00</option>
+            </select>
+          </div>
+          <button type="submit" class="mt-4">送出</button>
+        </form>
+        <div class="buttons mt-4">
+          <a href="/movie/{{movie.id}}">返回上一頁</a>
+          <a href="/movie/top">返回票房榜選擇</a>
+          <a href="/movie/category">返回類型頁選擇</a>
+        </div>
+      </div>
+      <div class="col-5" id="image-column">
+        <img src="{{movie.image_url}}" alt="poster">
+      </div>
+    </div>
+  </div>
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
